@@ -121,7 +121,7 @@ set(WITH_SSL $ENV{WITH_SSL} CACHE STRING
 
 option(WITH_JDBC "Also build the JDBC API test application" OFF)
 
-option(BUILD_STATIC "Link statically with the connector library" OFF)
+option(BUILD_STATIC "Link statically with the connector library" ON)
 
 if(BUILD_STATIC)
   message("Linking statically")

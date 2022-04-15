@@ -31,7 +31,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.1)
 
 CMAKE_POLICY(VERSION 3.1)
 cmake_policy(SET CMP0022 NEW)
-
+cmake_policy(SET CMP0068 NEW)
 
 SET(BUILDTYPE_DOCSTRING
  "Choose the type of build, options are: None(CMAKE_CXX_FLAGS or
@@ -155,7 +155,7 @@ enable_cxx11()
 # Configure static runtime library on Windows if requested
 #
 
-add_config_option(STATIC_MSVCRT BOOL ADVANCED DEFAULT OFF
+add_config_option(STATIC_MSVCRT BOOL ADVANCED DEFAULT ON
   "Use static MSVC runtime library"
 )
 

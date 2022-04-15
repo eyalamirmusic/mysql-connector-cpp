@@ -88,11 +88,11 @@ function(main)
 
   set(OPENSSL_LIB_DIR "${OPENSSL_LIB_DIR}" CACHE INTERNAL "")
 
-  if(NOT OPENSSL_VERSION_MAJOR EQUAL 1)
-    message(SEND_ERROR "OpenSSL version 1.x is required but version ${OPENSSL_VERSION} was found")
-  else()
-    message(STATUS "Using OpenSSL version: ${OPENSSL_VERSION}")
-  endif()
+#  if(NOT OPENSSL_VERSION_MAJOR EQUAL 1)
+#    message(SEND_ERROR "OpenSSL version 1.x is required but version ${OPENSSL_VERSION} was found")
+#  else()
+#    message(STATUS "Using OpenSSL version: ${OPENSSL_VERSION}")
+#  endif()
 
   set(OPENSSL_VERSION_GLOBAL ${OPENSSL_VERSION} CACHE INTERNAL "OpenSSL Version")
   #message(STATUS "OPENSSL_INCLUDE_DIR: ${OPENSSL_INCLUDE_DIR}")
@@ -100,14 +100,14 @@ function(main)
 
 
   set(CMAKE_REQUIRED_INCLUDES "${OPENSSL_INCLUDE_DIR}")
-  CHECK_SYMBOL_EXISTS(SHA512_DIGEST_LENGTH "openssl/sha.h"
-                      HAVE_SHA512_DIGEST_LENGTH)
-
-  if(NOT HAVE_SHA512_DIGEST_LENGTH)
-
-    message(SEND_ERROR "Could not find SHA512_DIGEST_LENGTH symbol in sha.h header of OpenSSL library")
-
-  endif()
+#  CHECK_SYMBOL_EXISTS(SHA512_DIGEST_LENGTH "openssl/sha.h"
+#                      HAVE_SHA512_DIGEST_LENGTH)
+#
+#  if(NOT HAVE_SHA512_DIGEST_LENGTH)
+#
+#    message(SEND_ERROR "Could not find SHA512_DIGEST_LENGTH symbol in sha.h header of OpenSSL library")
+#
+#  endif()
 
   check_x509_functions()
 
@@ -135,14 +135,14 @@ endfunction(main)
 function(check_x509_functions)
     SET(CMAKE_REQUIRED_LIBRARIES SSL::ssl)
 
-    CHECK_SYMBOL_EXISTS(X509_CHECK_FLAG_NO_PARTIAL_WILDCARDS "openssl/x509v3.h"
-                        HAVE_X509_CHECK_FLAG_NO_PARTIAL_WILDCARDS)
-    CHECK_SYMBOL_EXISTS(SSL_get0_param "openssl/ssl.h"
-                        HAVE_SSL_GET0_PARAM)
-    CHECK_SYMBOL_EXISTS(X509_VERIFY_PARAM_set_hostflags "openssl/x509v3.h"
-                        HAVE_X509_VERIFY_PARAM_SET_HOSTFLAGS)
-    CHECK_SYMBOL_EXISTS(X509_VERIFY_PARAM_set1_host "openssl/x509v3.h"
-                        HAVE_X509_VERIFY_PARAM_SET1_HOST)
+#    CHECK_SYMBOL_EXISTS(X509_CHECK_FLAG_NO_PARTIAL_WILDCARDS "openssl/x509v3.h"
+#                        HAVE_X509_CHECK_FLAG_NO_PARTIAL_WILDCARDS)
+#    CHECK_SYMBOL_EXISTS(SSL_get0_param "openssl/ssl.h"
+#                        HAVE_SSL_GET0_PARAM)
+#    CHECK_SYMBOL_EXISTS(X509_VERIFY_PARAM_set_hostflags "openssl/x509v3.h"
+#                        HAVE_X509_VERIFY_PARAM_SET_HOSTFLAGS)
+#    CHECK_SYMBOL_EXISTS(X509_VERIFY_PARAM_set1_host "openssl/x509v3.h"
+#                        HAVE_X509_VERIFY_PARAM_SET1_HOST)
 
     IF(HAVE_SSL_GET0_PARAM AND HAVE_X509_CHECK_FLAG_NO_PARTIAL_WILDCARDS AND
        HAVE_X509_VERIFY_PARAM_SET_HOSTFLAGS AND HAVE_X509_VERIFY_PARAM_SET1_HOST)
